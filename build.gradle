@@ -1,0 +1,21 @@
+plugins {
+    id 'com.android.application' version '7.1.1' apply false
+    id 'com.android.library' version '7.1.1' apply false
+    id 'org.jetbrains.kotlin.android' version '1.6.10' apply false
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext {
+    minSdk = 21
+    targetSdk = 32
+
+    versionCode = 1
+    exampleVersionName = "1.0.0"
+    recyclertableviewVersionName = "1.0.0"
+
+    groupId = "io.github.ekiryushin"
+    artifactId = "recyclertableview"
+}

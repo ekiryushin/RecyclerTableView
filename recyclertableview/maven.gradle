@@ -1,0 +1,79 @@
+plugins {
+    id 'maven-publish'
+    id("org.jetbrains.dokka") version "1.7.20"
+    signing
+}
+
+tasks.register("sourceJar", Jar) {
+    from android.sourceSets.main.kotlin.srcDirs
+    archiveClassifier.set('sources')
+    description = "Исходники библиотеки"
+    group = JavaBasePlugin.DOCUMENTATION_GROUP
+}
+
+artifacts {
+    archives sourceJar
+}
+
+Properties properties = new Properties()
+properties.load(rootProject.file("local.properties").newDataInputStream())
+
+project.ext["signing.keyId"] = properties.getProperty("lib.sign.keyId")
+project.ext["signing.secretKeyRingFile"] = properties.getProperty("lib.sign.secretKeyRingFile")
+project.ext["signing.password"] = properties.getProperty("lib.sign.password")
+
+afterEvaluate {
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                groupId = rootProject.ext.groupId
+                artifactId = rootProject.ext.artifactId
+                version = rootProject.ext.recyclertableviewVersionName
+
+                from components.release
+                artifact sourceJar
+
+                pom {
+                    name = 'RecyclerTableView'
+                    description = 'RecyclerTableView - Android-библиоткека для отображение данных в виде прокручиваемой таблицы. ' +
+                            'Данные для таблицы могут формироваться сразу или постранично.'
+                    url = 'https://github.com/ekiryushin/RecyclerTableView'
+
+                    licenses {
+                        license {
+                            name = 'The Apache License, Version 2.0'
+                            url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id = 'ekiryushin'
+                            name = 'Kiryushin Eugene'
+                            email = 'kiryushin.ea@gmail.com'
+                        }
+                    }
+
+                    scm {
+                        url = 'https://github.com/ekiryushin/RecyclerTableView'
+                    }
+                }
+            }
+        }
+
+        repositories {
+            maven {
+                name = "sonatypeStaging"
+                url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+                credentials {
+                    username = properties.getProperty("lib.maven.username")
+                    password = properties.getProperty("lib.maven.password")
+                }
+            }
+        }
+    }
+
+    signing {
+        sign(publishing.publications)
+    }
+}

@@ -1,0 +1,59 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+Properties properties = new Properties()
+properties.load(rootProject.file("local.properties").newDataInputStream())
+
+android {
+    compileSdk rootProject.ext.targetSdk
+
+    defaultConfig {
+        applicationId "${rootProject.ext.groupId}.${rootProject.ext.artifactId}.example"
+        minSdk rootProject.ext.minSdk
+        targetSdk rootProject.ext.targetSdk
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.exampleVersionName
+    }
+
+    signingConfigs {
+        release {
+            storeFile file(properties.getProperty("app.sign.file"))
+            storePassword properties.getProperty("app.sign.filePassword")
+            keyAlias properties.getProperty("app.sign.alias")
+            keyPassword properties.getProperty("app.sign.aliasPassword")
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+
+    implementation project(':recyclertableview')
+
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'com.google.android.material:material:1.7.0'
+}
