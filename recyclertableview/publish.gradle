@@ -1,13 +1,10 @@
-plugins {
-    id 'maven-publish'
-    id("org.jetbrains.dokka") version "1.7.20"
-    signing
-}
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
 
 tasks.register("sourceJar", Jar) {
     from android.sourceSets.main.kotlin.srcDirs
     archiveClassifier.set('sources')
-    description = "Исходники библиотеки"
+    description = "Исходный код библиотеки"
     group = JavaBasePlugin.DOCUMENTATION_GROUP
 }
 
@@ -25,17 +22,19 @@ project.ext["signing.password"] = properties.getProperty("lib.sign.password")
 afterEvaluate {
     publishing {
         publications {
-            maven(MavenPublication) {
+            release(MavenPublication) {
                 groupId = rootProject.ext.groupId
                 artifactId = rootProject.ext.artifactId
                 version = rootProject.ext.recyclertableviewVersionName
 
                 from components.release
+
                 artifact sourceJar
 
                 pom {
                     name = 'RecyclerTableView'
-                    description = 'RecyclerTableView - Android-библиоткека для отображение данных в виде прокручиваемой таблицы. ' +
+                    description = 'RecyclerTableView - Android-библиоткека для отображения ' +
+                            'данных в виде прокручиваемой таблицы на основе RecyclerView. ' +
                             'Данные для таблицы могут формироваться сразу или постранично.'
                     url = 'https://github.com/ekiryushin/RecyclerTableView'
 
@@ -55,6 +54,8 @@ afterEvaluate {
                     }
 
                     scm {
+                        connection = 'scm:git:github.com/ekiryushin/RecyclerTableView.git'
+                        developerConnection = 'scm:git:ssh://github.com/ekiryushin/RecyclerTableView.git'
                         url = 'https://github.com/ekiryushin/RecyclerTableView'
                     }
                 }
@@ -63,11 +64,10 @@ afterEvaluate {
 
         repositories {
             maven {
-                name = "sonatypeStaging"
-                url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+                url = 'https://jitpack.io'
                 credentials {
-                    username = properties.getProperty("lib.maven.username")
-                    password = properties.getProperty("lib.maven.password")
+                    username = properties.getProperty("lib.jitpack.username")
+                    password = properties.getProperty("lib.jitpack.token")
                 }
             }
         }

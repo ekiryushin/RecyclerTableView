@@ -3,7 +3,7 @@ plugins {
     id 'kotlin-android'
 }
 
-//apply from: 'maven.gradle'
+apply from: 'publish.gradle'
 
 android {
     compileSdk rootProject.ext.targetSdk
@@ -27,9 +27,15 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
-
     implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'androidx.paging:paging-runtime-ktx:3.1.1'
 }

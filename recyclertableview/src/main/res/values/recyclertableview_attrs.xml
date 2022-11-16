@@ -1,0 +1,9 @@
+<resources>
+    <declare-styleable name="RecyclerTableView">
+        <!-- Цвет разделительных линий -->
+        <attr name="divider_color" format="color"/>
+
+        <!-- Толщина разделительных линий -->
+        <attr name="divider_size" format="dimension"/>
+    </declare-styleable>
+</resources>
