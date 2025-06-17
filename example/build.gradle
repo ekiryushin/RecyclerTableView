@@ -19,16 +19,23 @@ android {
 
     signingConfigs {
         release {
-            storeFile file(properties.getProperty("app.sign.file"))
-            storePassword properties.getProperty("app.sign.filePassword")
-            keyAlias properties.getProperty("app.sign.alias")
-            keyPassword properties.getProperty("app.sign.aliasPassword")
+            def keystoreFile = rootProject.file("local.properties").exists()
+                    ? file(properties.getProperty("app.sign.file"))
+                    : null
+            if (keystoreFile != null) {
+                storeFile keystoreFile
+                storePassword properties.getProperty("app.sign.filePassword")
+                keyAlias properties.getProperty("app.sign.alias")
+                keyPassword properties.getProperty("app.sign.aliasPassword")
+            }
         }
     }
 
     buildTypes {
         release {
-            signingConfig signingConfigs.release
+            signingConfig signingConfigs.release?.storeFile
+                    ? signingConfigs.release
+                    : signingConfigs.debug
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
