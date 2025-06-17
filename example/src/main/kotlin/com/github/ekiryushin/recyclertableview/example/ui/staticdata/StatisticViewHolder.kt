@@ -1,9 +1,9 @@
 package com.github.ekiryushin.recyclertableview.example.ui.staticdata
 
 import android.graphics.Typeface
+import com.github.ekiryushin.recyclertableview.example.R
+import com.github.ekiryushin.recyclertableview.example.databinding.CellItemBinding
 import com.github.ekiryushin.recyclertableview.ui.adapter.RecyclerTableViewHolder
-import io.github.ekiryushin.recyclertableview.example.R
-import io.github.ekiryushin.recyclertableview.example.databinding.CellItemBinding
 
 class StatisticViewHolder(private val binding: CellItemBinding):
     RecyclerTableViewHolder<String>(binding.root) {

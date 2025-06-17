@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import io.github.ekiryushin.recyclertableview.R
+import com.github.ekiryushin.recyclertableview.R
 import com.github.ekiryushin.recyclertableview.core.DefaultParams
 import com.github.ekiryushin.recyclertableview.core.LogLevel
 import com.github.ekiryushin.recyclertableview.core.RecyclerTableViewUtils

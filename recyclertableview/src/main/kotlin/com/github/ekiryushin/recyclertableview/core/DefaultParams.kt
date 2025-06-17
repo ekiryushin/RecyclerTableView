@@ -2,7 +2,7 @@ package com.github.ekiryushin.recyclertableview.core
 
 import androidx.annotation.ColorRes
 import androidx.annotation.DimenRes
-import io.github.ekiryushin.recyclertableview.R
+import com.github.ekiryushin.recyclertableview.R
 
 /** Значения параметров по умолчанию */
 object DefaultParams {

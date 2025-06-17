@@ -3,10 +3,10 @@ package com.github.ekiryushin.recyclertableview.example.ui.dynamicdata
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
+import com.github.ekiryushin.recyclertableview.example.databinding.CellItemBinding
+import com.github.ekiryushin.recyclertableview.example.ui.staticdata.StatisticViewHolder
 import com.github.ekiryushin.recyclertableview.ui.adapter.RecyclerTableViewHolder
 import com.github.ekiryushin.recyclertableview.ui.adapter.RecyclerTableViewPagingAdapter
-import io.github.ekiryushin.recyclertableview.example.databinding.CellItemBinding
-import com.github.ekiryushin.recyclertableview.example.ui.staticdata.StatisticViewHolder
 
 class DynamicAdapter(columnCount: Int): RecyclerTableViewPagingAdapter<String>(columnCount, diffUtil) {
 

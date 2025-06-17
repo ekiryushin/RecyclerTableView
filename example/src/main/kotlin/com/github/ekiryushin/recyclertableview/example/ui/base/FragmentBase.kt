@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import io.github.ekiryushin.recyclertableview.example.databinding.TableFragmentBinding
+import com.github.ekiryushin.recyclertableview.example.databinding.TableFragmentBinding
 
 abstract class FragmentBase: Fragment() {
 

@@ -3,8 +3,8 @@ package com.github.ekiryushin.recyclertableview.example.ui.activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.github.ekiryushin.recyclertableview.example.databinding.MainActivityBinding
 import com.google.android.material.tabs.TabLayoutMediator
-import io.github.ekiryushin.recyclertableview.example.databinding.MainActivityBinding
 
 class MainActivity: AppCompatActivity() {
 

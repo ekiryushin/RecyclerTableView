@@ -23,7 +23,7 @@ dependencies {
 # Пример использования (Статичные данные)
 1) Добавляем view
 ```xml
-<io.github.ekiryushin.recyclertableview.RecyclerTableView
+<com.github.ekiryushin.recyclertableview.RecyclerTableView
     android:id="@+id/recycler_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent" />
