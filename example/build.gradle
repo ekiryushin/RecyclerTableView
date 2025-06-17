@@ -19,9 +19,16 @@ android {
 
     signingConfigs {
         release {
-            def keystoreFile = rootProject.file("local.properties").exists()
-                    ? file(properties.getProperty("app.sign.file"))
+            //путь до файла подписи
+            def keystorePath = rootProject.file("local.properties").exists()
+                    ? properties.getProperty("app.sign.file")
                     : null
+
+            //файл подписи
+            def keystoreFile = (keystorePath != null && !keystorePath.isEmpty())
+                    ? file(keystorePath)
+                    : null
+
             if (keystoreFile != null) {
                 storeFile keystoreFile
                 storePassword properties.getProperty("app.sign.filePassword")
