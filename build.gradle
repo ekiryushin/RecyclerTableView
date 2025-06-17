@@ -12,7 +12,7 @@ ext {
     minSdk = 21
     targetSdk = 32
 
-    versionCode = 2
+    versionCode = 3
     exampleVersionName = "1.0.1"
     recyclertableviewVersionName = "1.0.1"
 
