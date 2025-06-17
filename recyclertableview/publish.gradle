@@ -74,6 +74,8 @@ afterEvaluate {
     }
 
     signing {
+        required { !System.getenv('CI') && rootProject.file('local.properties').exists() }
+
         sign(publishing.publications)
     }
 }
